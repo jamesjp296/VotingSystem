@@ -58,7 +58,7 @@ namespace sandbox
                 if (winners.Count != winners.Count)
                 {
                     var lowestAmountOfVotes = Counters.Min(x => x.Count);
-                    var loser = Counters.First(x => x.Count == biggestAmountOfVotes);
+                    var loser = Counters.First(x => x.Count == lowestAmountOfVotes);
                     loser.AddExcess(excess);
                 }
                 Console.WriteLine(string.Join("-Draw-", winners.Select(x => x.Name)));
@@ -79,18 +79,15 @@ namespace sandbox
 
         static void Main(string[] args)
         {
-            var yes = new Counter("Yes", 4);
-            var no = new Counter("No", 4);
-            var maybe = new Counter("Maybe", 4);
-
-
-
+            var yes = new Counter("Yes", 5);
+            var no = new Counter("No", 6);
+            var maybe = new Counter("Maybe", 3);
             var manager = new CounterManager(yes, no, maybe);
 
-            var yesPercent = yes.GetPercent(manager.Total());
-            var noPercent = no.GetPercent(manager.Total());
-            var maybePercent = maybe.GetPercent(manager.Total());
+            
 
+
+            manager.AnnounceWinner();
 
 
         }
